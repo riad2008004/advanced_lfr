@@ -1,22 +1,53 @@
 #include <Arduino.h>
+#include "display.h"
+#include "button.h"
+#include "motor.h"
+#include "pidcalc.h"
+#include "irsensor.h"
+#include "memory.h"
+#include "sonar.h"
 
-// put function declarations here:
-int myFunction(int, int);
-
+//------------ Global variables ----------------------
+extern struct Memory sensorMemory;
+const int numOfSensors = 8;
+extern unsigned int sensorThreshold[numOfSensors];
 void setup()
 {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
-}
+  // Serial.begin(9600);
+  displaySetup();
+  buttonSetup();
+  memorySetup(&sensorMemory);
+  memoryRetriveConfigVariables();
 
+  // Only Once needed
+  // memorySaveMotorVariables();
+  // memorySaveSensorVariables();
+  // memorySaveConfigVariables();
+
+  sensorSetup();
+  motorSetup();
+  PIDsetup();
+  sonarSetup();
+  displayBootScreen();
+}
+String arr[100];
 void loop()
 {
-  // put your main code here, to run repeatedly:
-}
+  // memorySaveMotorVariables();
 
-// put function definitions here:
-int myFunction(int x, int y)
-{
-  return x + y;
+  displayMenu("MAIN_MENU");
+
+  // sonarTest(1);
+  // readSensors();
+  // showRawSensorData();
+  // sonarDrive();
+  // motorCalibrate();
+  // memoryGetArray(&sensorMemory, arr);
+  // Serial.println("---------");
+  // Serial.println("---------");
+  // for (int i = 0; i < 100; i++)
+  // {
+  //   Serial.println(arr[i]);
+  // }
+  // readSensors();
 }
-//
