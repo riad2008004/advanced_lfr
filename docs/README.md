@@ -15,14 +15,6 @@ EEPROM memory diagram:
 
 ## Todo
 
-1. button.cpp optim. **Done**
-2. continuous reading in display.cpp **Done**
-3. portRead **Done**
-4. invert implementation **Done**
-5. SONAR
-6. SERVO
-7. Case detection copy-paste
-8. PWM frequency modification
 
 ## Mega Pin Mapping
 
