@@ -164,7 +164,7 @@ void generateThreshold()
     }
     for (int th_i = 0; th_i < 300; th_i++)
     {
-        Right(4, 90);
+        Right(4, 80); // set the speed while generating Threshold of IR
         readSensors();
         for (int sense = 0; sense < numOfSensors; sense++)
         {
