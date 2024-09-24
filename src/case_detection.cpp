@@ -102,12 +102,6 @@ uint8_t sensorRightTurnCases[]{
     0b00001101,
     0b00011101, // 3 sensor
 
-    // VY Cases
-    0b10011101,
-    0b10111001,
-    0b11011101,
-    0b10111011,
-
 };
 
 uint8_t y_cases[] = {
@@ -239,11 +233,11 @@ String detect_case()
     {
         return "T";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 10 && case_count_arr_after[NORMAL_CASES] > 5 && case_count_arr_after[RIGHT_TURN_CASES] > 15)
+    if (case_count_arr_before[NORMAL_CASES] > 10 && case_count_arr_after[NORMAL_CASES] > 5 && case_count_arr_after[RIGHT_TURN_CASES] > 10)
     {
         return "TR";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 10 && case_count_arr_after[NORMAL_CASES] > 5 && case_count_arr_after[LEFT_TURN_CASES] > 15)
+    if (case_count_arr_before[NORMAL_CASES] > 10 && case_count_arr_after[NORMAL_CASES] > 5 && case_count_arr_after[LEFT_TURN_CASES] > 10)
     {
         return "TL";
     }

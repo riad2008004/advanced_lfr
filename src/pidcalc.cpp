@@ -58,9 +58,9 @@ void deviation()
     else if (sensorBinaryData == B01000000)
         Vul = -12.5; // 0110 0000
     else if (sensorBinaryData == B00000001)
-        Vul = 30; // 0000 0001
+        Vul = 35; // 0000 0001
     else if (sensorBinaryData == B10000000)
-        Vul = -30; // 1000 0000
+        Vul = -35; // 1000 0000
 
     //------------------------TWO SENSOR------------------------
     else if (sensorBinaryData == B00001100) // 12

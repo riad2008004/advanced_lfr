@@ -4,7 +4,6 @@
 static const byte numOfSensors = 8;
 static byte i;
 static unsigned int sensorMaxWaitTime = 1024;
-static boolean firstData[numOfSensors];
 int sensorRawReading[numOfSensors];
 boolean sensorBinaryReading[numOfSensors];
 byte sensorBinaryData;
@@ -35,56 +34,6 @@ void sensorSetup()
 
 void readSensors()
 {
-    // /**
-    //  * Code to read sensor data -> identical to the documentation with some simple modifications
-    //  *
-    //  */
-    // //---------------------------------------------------------------------
-    // // for (i = 0; i < numOfSensors; i++)
-    // // {
-    // //     digitalWrite(sensorPin[i], HIGH);
-    // //     pinMode(sensorPin[i], OUTPUT);
-    // // }
-    // // Equivalent Port Manipulation code
-    // PORTF = B11111111;
-    // DDRF = B11111111;
-    // //-----------------------------------------------------------------------
-    // delayMicroseconds(10);
-    // //----------------------------------------------------------------------
-    // // for (i = 0; i < numOfSensors; i++)
-    // // {
-    // //     pinMode(sensorPin[i], INPUT);
-    // //     digitalWrite(sensorPin[i], LOW);
-    // //     sensorRawReading[i] = sensorMaxWaitTime;
-    // //     firstData[i] = false;
-    // // }
-    // for (i = 0; i < numOfSensors; i++)
-    // {
-    //     sensorRawReading[i] = sensorMaxWaitTime;
-    //     firstData[i] = false;
-    // }
-    // DDRF = B00000000;
-    // PORTF = B00000000;
-    // //-----------------------------------------------------------------------
-    // unsigned long startTime = micros();
-
-    // while ((micros() - startTime) < sensorMaxWaitTime)
-    // {
-    //     unsigned int time = micros() - startTime;
-    //     for (i = 0; i < numOfSensors; i++)
-    //     {
-    //         if ((portRead('F', sensorPin[i]) == LOW) && (firstData[i] == false))
-    //         {
-    //             sensorRawReading[i] = time;
-    //             firstData[i] = true;
-    //             if (PINF == B00000000)
-    //             {
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
-
     for (int i = 0; i < numOfSensors; i++)
     {
         sensorRawReading[i] = analogRead(sensorPin[i]);
@@ -180,35 +129,4 @@ void generateThreshold()
     }
     Stop(10);
     memorySaveSensorVariables();
-}
-
-bool portRead(char port_type, byte pin_number)
-{
-    bool reading;
-    if (port_type == 'D')
-    {
-        reading = (PIND >> pin_number) & 1;
-        return reading;
-    }
-    else if (port_type == 'F')
-    {
-        reading = (PINF >> pin_number) & 1;
-        return reading;
-    }
-    else if (port_type == 'C')
-    {
-        reading = (PINC >> pin_number) & 1;
-        return reading;
-    }
-    else if (port_type == 'G')
-    {
-        reading = (PING >> pin_number) & 1;
-        return reading;
-    }
-    else if (port_type == 'A')
-    {
-        reading = (PINA >> pin_number) & 1;
-        return reading;
-    }
-    return 0;
 }

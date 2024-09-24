@@ -165,8 +165,9 @@ void Backward(double del, int vel)
 //--------------------------------------------------------------------------------------
 void Right(double del, int vel)
 {
+    int temp_vel = vel - 80;
     analogWrite(R_MTR_PWM, vel);
-    analogWrite(L_MTR_PWM, vel);
+    analogWrite(L_MTR_PWM, temp_vel);
     if (R_MTR_STATE != -1)
     {
         digitalWrite(R_MTR_IN_1, LOW);
@@ -184,7 +185,8 @@ void Right(double del, int vel)
 //--------------------------------------------------------------------------------------
 void Left(double del, int vel)
 {
-    analogWrite(R_MTR_PWM, vel);
+    int temp_vel = vel - 80;
+    analogWrite(R_MTR_PWM, temp_vel);
     analogWrite(L_MTR_PWM, vel); // for calibration
     if (R_MTR_STATE != 1)
     {
@@ -220,24 +222,22 @@ void Stop(double del)
     delay(del);
 }
 // //---------------------------------Breaking functions--------------------------------------
-void BreakF()
+void BreakF(int del, int vel)
 {
-    // Backward(45, 220);
-    // Stop(5);
-    // C_B_RIAD
+    Backward(del, vel); // CB by Riad
 }
 // //-----------------------------------------------------------------------------------------
 void BreakL()
 {
     Right(20, 150);
-    Stop(5);
+    // Stop(5);
     // C_B_RIAD
 }
 // //-----------------------------------------------------------------------------------------
 void BreakR()
 {
     Left(20, 150);
-    Stop(5);
+    // Stop(5);
     // C_B_RIAD
 }
 //------------------------------Sharp Turn Functions------------------------------------------
@@ -245,10 +245,10 @@ void Tleft()
 {
 
     // BreakF();
-    Stop(5);
+    // Stop(5);
     while (1)
     {
-        Left(5, 230); // (del,vel)
+        Left(5, 250); // (del,vel)
         readSensors();
         generateBinary();
         if (sensorBinaryReading[0] == 1 || sensorBinaryReading[1] == 1)
@@ -276,10 +276,38 @@ void Tright()
 {
 
     // BreakF();
-    Stop(5);
+    // Stop(5);
     while (1)
     {
-        Right(5, 230); //(del,vel)
+        Right(5, 250); //(del,vel)
+        readSensors();
+        generateBinary();
+        if (sensorBinaryReading[6] == 1 || sensorBinaryReading[7] == 1)
+        {
+            while (true)
+            {
+                Right(5, 150);
+                readSensors();
+                generateBinary();
+                if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
+                {
+                    BreakR();
+                    Stop(5);
+                    break;
+                }
+            }
+            // BreakR();
+            Stop(5);
+            break;
+        }
+    }
+}
+void UTurn()
+{
+    BreakF(50, 200);
+    while (1)
+    {
+        Right(5, 200); //(del,vel)
         readSensors();
         generateBinary();
         if (sensorBinaryReading[6] == 1 || sensorBinaryReading[7] == 1)
@@ -432,7 +460,7 @@ void handle_case(String case_str)
     if (case_str == "T")
     {
         if (configureMenu[2] == 0)
-            Forward(150, 245);
+            Forward(80, 150);
         else if (configureMenu[2] == 1)
             Tright();
         else if (configureMenu[2] == 2)
@@ -494,9 +522,10 @@ void handle_case(String case_str)
     {
         if (configureMenu[7] == 2)
         {
-            Tleft();
-            // Tright();
-            // Forward(1200, 250);
+            UTurn();
+            // Tleft();
+            //  Tright();
+            //  Forward(1200, 250);
             return;
         }
 
@@ -543,7 +572,7 @@ void handle_case(String case_str)
             Tleft();
             return;
         }
-        BreakF();
+        BreakF(50, 150);
         Stop(4000);
     }
     else if (case_str == "L")
@@ -592,11 +621,11 @@ void detection()
     // digitalWrite(LED_1, HIGH);
     // digitalWrite(LED_2, HIGH);
     float tempMotorSpeed = motorSpeed;
-    motorSpeed = 185; // motor speed while detecting case
+    motorSpeed = 140; // motor speed while detecting case
     for (int i = 0; i < 50; i++)
     {
         PIDRun();
-        delayMicroseconds(250);
+        delayMicroseconds(160);
     }
     case_str = detect_case();
     displayCaseDecision(case_str);

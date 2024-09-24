@@ -14,11 +14,12 @@ void Tleft();
 void Tright();
 void BreakR();
 void BreakL();
-void BreakF();
+void BreakF(int del,int vel);
 void detection();
 void sonarDrive();
 void PIDRun();
 void handle_case(String case_str);
 void doura();
 void handleObject();
+void UTurn();
 #endif // _MOTOR_CONTROL
