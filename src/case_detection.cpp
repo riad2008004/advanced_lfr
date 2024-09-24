@@ -233,11 +233,7 @@ String detect_case()
 
     if (case_count_arr_before[NORMAL_CASES] > 10 && case_count_arr_after[FULL_BLACK_CASES] > 10 && case_count_arr_after[NORMAL_CASES] > 10 && case_count_arr_after[FULL_WHITE_CASES] < 5)
     {
-        // 6 -> white cases
-        // 5 -> black cases
-        // 0 -> normal cases
-        // 3 -> right cases
-        return "+"; // + Junction
+        return "+";
     }
     if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[FULL_BLACK_CASES] > 10 && case_count_arr_after[FULL_WHITE_CASES] > 5)
     {

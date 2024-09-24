@@ -592,11 +592,11 @@ void detection()
     // digitalWrite(LED_1, HIGH);
     // digitalWrite(LED_2, HIGH);
     float tempMotorSpeed = motorSpeed;
-    motorSpeed = 245;
+    motorSpeed = 185; // motor speed while detecting case
     for (int i = 0; i < 50; i++)
     {
         PIDRun();
-        delayMicroseconds(380);
+        delayMicroseconds(250);
     }
     case_str = detect_case();
     displayCaseDecision(case_str);
