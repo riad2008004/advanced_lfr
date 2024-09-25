@@ -133,15 +133,6 @@ void count_cases(uint8_t case_count_arr[], int start, int end)
     // Update the memory with latest data to count cases from it
     memoryGetArray(&sensorMemory, sensorReadingArray);
 
-    // Clear case_count_arr from previous values
-    // case_count_arr[] = 0; // Normal Cases
-    // case_count_arr[1] = 0; // Left Turn Cases
-    // case_count_arr[2] = 0; // Danger Left Cases
-    // case_count_arr[3] = 0; // Right Turn Cases
-    // case_count_arr[4] = 0; // Danger Right Cases
-    // case_count_arr[5] = 0; // Full Black Cases
-    // case_count_arr[6] = 0; // Full white cases
-
     for (int i = 0; i < case_length; i++)
     {
         case_count_arr[i] = 0;
@@ -245,48 +236,39 @@ String detect_case()
     {
         return "Y";
     }
-    if ((case_count_arr_before[DANGER_LEFT_CASES] + case_count_arr_after[DANGER_LEFT_CASES]) > 5 && case_count_arr_after[FULL_WHITE_CASES] > 5)
+    if ((case_count_arr_before[DANGER_LEFT_CASES] + case_count_arr_after[DANGER_LEFT_CASES]) > 10 && case_count_arr_after[FULL_WHITE_CASES] > 5)
     {
         // 2 -> danger left cases
         // 6 -> white cases
         return "P_L"; // PID-Failure in left side
     }
-    if ((case_count_arr_before[DANGER_RIGHT_CASES] + case_count_arr_after[DANGER_RIGHT_CASES]) > 5 && case_count_arr_after[FULL_WHITE_CASES] > 5)
+    if ((case_count_arr_before[DANGER_RIGHT_CASES] + case_count_arr_after[DANGER_RIGHT_CASES]) > 10 && case_count_arr_after[FULL_WHITE_CASES] > 5)
     {
         // 4 -> danger right cases
         // 6 -> white cases
         return "P_R"; // PID-Failure in right side
     }
-    if (case_count_arr_after[DANGER_LEFT_CASES] > 25 && case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[FULL_WHITE_CASES] < 5)
-    {
-        return "C_L"; // for sharp curb Left side
-    }
-    if (case_count_arr_after[DANGER_RIGHT_CASES] > 25 && case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[FULL_WHITE_CASES] < 5)
-    {
-        return "C_R"; // for sharp curb Right side
-    }
+    // if (case_count_arr_after[DANGER_LEFT_CASES] > 25 && case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[FULL_WHITE_CASES] < 5)
+    // {
+    //     return "C_L"; // for sharp curb Left side
+    // }
+    // if (case_count_arr_after[DANGER_RIGHT_CASES] > 25 && case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[FULL_WHITE_CASES] < 5)
+    // {
+    //     return "C_R"; // for sharp curb Right side
+    // }
 
     if ((case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]) > 10 && (case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]) > (case_count_arr_after[RIGHT_TURN_CASES] + case_count_arr_before[RIGHT_TURN_CASES]))
     {
-        // 0 -> normal cases
-        // 1 -> left turn cases
-        // 3 -> right turn cases
         return "L";
     }
     if ((case_count_arr_after[RIGHT_TURN_CASES] + case_count_arr_before[RIGHT_TURN_CASES]) > 10 && (case_count_arr_after[RIGHT_TURN_CASES] + case_count_arr_before[RIGHT_TURN_CASES]) > (case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]))
     {
-        // 1 -> left turn cases
-        // 3 -> right turn cases
+
         return "R";
     }
 
     if (case_count_arr_after[FULL_WHITE_CASES] > 20 && case_count_arr_before[NORMAL_CASES] > 20)
     {
-        // 1 -> left turn cases
-        // 2 -> danger left cases
-        // 3 -> right turn cases
-        // 4 -> danger right cases
-        // 6 -> white cases
         return "L_B"; // Line break
     }
 

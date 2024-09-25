@@ -229,14 +229,14 @@ void BreakF(double del, int vel)
 // //-----------------------------------------------------------------------------------------
 void BreakL()
 {
-    Right(20, 150);
+    Right(20, 190);
     // Stop(5);
     // C_B_RIAD
 }
 // //-----------------------------------------------------------------------------------------
 void BreakR()
 {
-    Left(20, 150);
+    Left(20, 190);
     // Stop(5);
     // C_B_RIAD
 }
@@ -255,18 +255,18 @@ void Tleft()
         {
             while (true)
             {
-                Left(5, 100);
+                Left(5, 90);
                 readSensors();
                 generateBinary();
                 if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
                 {
                     BreakL();
-                    Stop(5);
+                    // Stop(5);
                     break;
                 }
             }
-            // BreakL();
-            Stop(5);
+            BreakL();
+            // Stop(5);
             break;
         }
     }
@@ -286,18 +286,18 @@ void Tright()
         {
             while (true)
             {
-                Right(5, 100);
+                Right(5, 90);
                 readSensors();
                 generateBinary();
                 if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
                 {
                     BreakR();
-                    Stop(5);
+                    // Stop(5);
                     break;
                 }
             }
-            // BreakR();
-            Stop(5);
+            BreakR();
+            // Stop(5);
             break;
         }
     }
@@ -320,12 +320,12 @@ void UTurn()
                 if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
                 {
                     BreakR();
-                    Stop(5);
+                    // Stop(5);
                     break;
                 }
             }
-            // BreakR();
-            Stop(5);
+            BreakR();
+            // Stop(5);
             break;
         }
     }
@@ -459,6 +459,7 @@ void handle_case(String case_str)
     // Stop(3000);
     if (case_str == "T")
     {
+        BreakF(20, 150);
         if (configureMenu[2] == 0)
             Forward(80, 150);
         else if (configureMenu[2] == 1)
