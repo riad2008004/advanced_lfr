@@ -264,7 +264,7 @@ String detect_case()
     {
         return "TL";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 20 && (case_count_arr_after[Y_CASES] + case_count_arr_before[Y_CASES]) > 13)
+    if (case_count_arr_before[NORMAL_CASES] > 10 && (case_count_arr_after[Y_CASES] + case_count_arr_before[Y_CASES]) > 15)
     {
         return "Y";
     }

@@ -547,12 +547,12 @@ void handle_case(String case_str)
             Forward(80, 150);
         else if (configureMenu[2] == 1)
         {
-            BreakF(20, 220);
+            BreakF(25, 250);
             Tright();
         }
         else if (configureMenu[2] == 2)
         {
-            BreakF(20, 220);
+            BreakF(25, 250);
             Tleft(); // C_B_RIAD
         }
     }
@@ -562,7 +562,7 @@ void handle_case(String case_str)
             return;
         else if (configureMenu[1] == 1)
         {
-            BreakF(20, 230);
+            BreakF(25, 250);
             Tright();
         }
     }
@@ -572,7 +572,7 @@ void handle_case(String case_str)
             return;
         else if (configureMenu[0] == 1)
         {
-            BreakF(20, 230);
+            BreakF(25, 250);
             Tleft();
         }
     }
