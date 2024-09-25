@@ -169,7 +169,7 @@ void displayBootScreen()
     display.setTextSize(2);
     display.setTextColor(SSD1306_WHITE);
     display.setCursor(20, 0);
-    display.println(F("CORTEX"));
+    display.println(F("STARTING"));
     display.setCursor(18, 25);
     display.setTextSize(1);
     display.println("CORTEX ROBOTICS");

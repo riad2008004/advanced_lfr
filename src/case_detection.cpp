@@ -254,13 +254,13 @@ String detect_case()
     {
         return "T";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[NORMAL_CASES] > 10 &&
-        case_count_arr_after[SHARP_RIGHT_CASES] > 10 && case_count_arr_after[FULL_WHITE_CASES] == 0)
+    if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[NORMAL_CASES] > 8 &&
+        case_count_arr_after[SHARP_RIGHT_CASES] > 15 && case_count_arr_after[FULL_WHITE_CASES] == 0)
     {
         return "TR";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[NORMAL_CASES] > 10 &&
-        case_count_arr_after[SHARP_LEFT_CASES] > 10 && case_count_arr_after[FULL_WHITE_CASES] == 0)
+    if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[NORMAL_CASES] > 8 &&
+        case_count_arr_after[SHARP_LEFT_CASES] > 15 && case_count_arr_after[FULL_WHITE_CASES] == 0)
     {
         return "TL";
     }
@@ -287,11 +287,17 @@ String detect_case()
     //     return "C_R"; // for sharp curb Right side
     // }
 
-    if ((case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]) > 10 && (case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]) > (case_count_arr_after[RIGHT_TURN_CASES] + case_count_arr_before[RIGHT_TURN_CASES]))
+    if ((case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]) > 10 &&
+        (case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]) >
+            (case_count_arr_after[RIGHT_TURN_CASES] +
+             case_count_arr_before[RIGHT_TURN_CASES]))
     {
         return "L";
     }
-    if ((case_count_arr_after[RIGHT_TURN_CASES] + case_count_arr_before[RIGHT_TURN_CASES]) > 10 && (case_count_arr_after[RIGHT_TURN_CASES] + case_count_arr_before[RIGHT_TURN_CASES]) > (case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]))
+    if ((case_count_arr_after[RIGHT_TURN_CASES] + case_count_arr_before[RIGHT_TURN_CASES]) > 10 &&
+        (case_count_arr_after[RIGHT_TURN_CASES] + case_count_arr_before[RIGHT_TURN_CASES]) >
+            (case_count_arr_after[LEFT_TURN_CASES] +
+             case_count_arr_before[LEFT_TURN_CASES]))
     {
 
         return "R";

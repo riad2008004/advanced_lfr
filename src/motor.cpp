@@ -479,7 +479,7 @@ void Run()
     {
         handleObject();
     }
-    if (numOfHighReadings == 0 || numOfHighReadings > 3)
+    if (numOfHighReadings == 0 || numOfHighReadings > 4)
     {
         detection();
         // memorySetup(&sensorMemory); // Clear memory
@@ -547,12 +547,12 @@ void handle_case(String case_str)
             Forward(80, 150);
         else if (configureMenu[2] == 1)
         {
-            BreakF(20, 200);
+            BreakF(20, 220);
             Tright();
         }
         else if (configureMenu[2] == 2)
         {
-            BreakF(20, 200);
+            BreakF(20, 220);
             Tleft(); // C_B_RIAD
         }
     }
@@ -717,11 +717,11 @@ void detection()
     // digitalWrite(LED_1, HIGH);
     // digitalWrite(LED_2, HIGH);
     float tempMotorSpeed = motorSpeed;
-    motorSpeed = 140; // motor speed while detecting case
+    motorSpeed = 160; // motor speed while detecting case
     for (int i = 0; i < 50; i++)
     {
         PIDRun();
-        delayMicroseconds(160);
+        delayMicroseconds(170);
     }
     case_str = detect_case();
     displayCaseDecision(case_str);
