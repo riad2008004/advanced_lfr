@@ -202,6 +202,43 @@ void Left(double del, int vel)
     }
     delay(del);
 }
+void PRight(double del, int vel)
+{
+    analogWrite(R_MTR_PWM, vel / 5);
+    analogWrite(L_MTR_PWM, vel);
+    if (R_MTR_STATE != -1)
+    {
+        digitalWrite(R_MTR_IN_1, LOW);
+        digitalWrite(R_MTR_IN_2, HIGH);
+        R_MTR_STATE = -1;
+    }
+    if (L_MTR_STATE != 1)
+    {
+        digitalWrite(L_MTR_IN_1, HIGH);
+        digitalWrite(L_MTR_IN_2, LOW);
+        L_MTR_STATE = 1;
+    }
+    delay(del);
+}
+//--------------------------------------------------------------------------------------
+void PLeft(double del, int vel)
+{
+    analogWrite(R_MTR_PWM, vel);
+    analogWrite(L_MTR_PWM, vel / 5); // for calibration
+    if (R_MTR_STATE != 1)
+    {
+        digitalWrite(R_MTR_IN_1, HIGH);
+        digitalWrite(R_MTR_IN_2, LOW);
+        R_MTR_STATE = 1;
+    }
+    if (L_MTR_STATE != -1)
+    {
+        digitalWrite(L_MTR_IN_1, LOW);
+        digitalWrite(L_MTR_IN_2, HIGH);
+        L_MTR_STATE = -1;
+    }
+    delay(del);
+}
 //---------------------------------------------------------------------------------------
 void Stop(double del)
 {
@@ -298,6 +335,53 @@ void Tright()
             }
             BreakR();
             // Stop(5);
+            break;
+        }
+    }
+}
+void PIDleft()
+{
+    while (1)
+    {
+        PLeft(5, 230); // (del,vel)
+        readSensors();
+        generateBinary();
+        if (sensorBinaryReading[0] == 1 || sensorBinaryReading[1] == 1)
+        {
+            while (true)
+            {
+                PLeft(5, 90);
+                readSensors();
+                generateBinary();
+                if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
+                {
+                    break;
+                }
+            }
+            break;
+        }
+    }
+}
+// //----------------------------------------------------------------------------------------
+void PIDright()
+{
+    while (1)
+    {
+        PRight(5, 230); //(del,vel)
+        readSensors();
+        generateBinary();
+        if (sensorBinaryReading[6] == 1 || sensorBinaryReading[7] == 1)
+        {
+            while (true)
+            {
+                PRight(5, 90);
+                readSensors();
+                generateBinary();
+                if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
+                {
+                    break;
+                }
+            }
             break;
         }
     }
@@ -459,7 +543,7 @@ void handle_case(String case_str)
     // Stop(3000);
     if (case_str == "T")
     {
-        BreakF(20, 150);
+        BreakF(20, 180);
         if (configureMenu[2] == 0)
             Forward(80, 150);
         else if (configureMenu[2] == 1)
@@ -472,14 +556,22 @@ void handle_case(String case_str)
         if (configureMenu[1] == 0)
             return;
         else if (configureMenu[1] == 1)
+        {
+            BreakL();
+            BreakL();
             Tright();
+        }
     }
     if (case_str == "TL")
     {
         if (configureMenu[0] == 0)
             return;
         else if (configureMenu[0] == 1)
+        {
+            BreakR();
+            BreakR();
             Tleft();
+        }
     }
     if (case_str == "Y")
     {
@@ -548,11 +640,11 @@ void handle_case(String case_str)
     }
     else if (case_str == "P_L")
     {
-        Tleft();
+        PIDleft();
     }
     else if (case_str == "P_R")
     {
-        Tright();
+        PIDright();
     }
     else if (case_str == "C_L")
     {
