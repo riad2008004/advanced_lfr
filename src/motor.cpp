@@ -255,7 +255,7 @@ void Tleft()
         {
             while (true)
             {
-                Left(5, 150);
+                Left(5, 100);
                 readSensors();
                 generateBinary();
                 if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
@@ -286,7 +286,7 @@ void Tright()
         {
             while (true)
             {
-                Right(5, 150);
+                Right(5, 100);
                 readSensors();
                 generateBinary();
                 if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
@@ -349,11 +349,11 @@ void doura()
         L_motorSpeed = motorSpeed;
     }
 
-    if (R_motorSpeed < 5)
+    if (R_motorSpeed <= 0)
     {
         R_motorSpeed = 0;
     }
-    if (L_motorSpeed < 5)
+    if (L_motorSpeed <= 0)
     {
         L_motorSpeed = 0;
     }
