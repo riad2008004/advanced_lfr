@@ -244,19 +244,23 @@ String detect_case()
     }
     //--------------------------------------------------------
 
-    if (case_count_arr_before[NORMAL_CASES] > 10 && case_count_arr_after[FULL_BLACK_CASES] > 10 && case_count_arr_after[NORMAL_CASES] > 10 && case_count_arr_after[FULL_WHITE_CASES] < 5)
+    if (case_count_arr_before[NORMAL_CASES] > 10 && case_count_arr_after[FULL_BLACK_CASES] > 10 &&
+        case_count_arr_after[NORMAL_CASES] > 10 && case_count_arr_after[FULL_WHITE_CASES] < 5)
     {
         return "+";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[FULL_BLACK_CASES] > 10 && case_count_arr_after[FULL_WHITE_CASES] > 5)
+    if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[FULL_BLACK_CASES] > 10 &&
+        case_count_arr_after[FULL_WHITE_CASES] > 5)
     {
         return "T";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 15 && case_count_arr_after[NORMAL_CASES] > 15 && case_count_arr_after[SHARP_RIGHT_CASES] > 15)
+    if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[NORMAL_CASES] > 10 &&
+        case_count_arr_after[SHARP_RIGHT_CASES] > 10 && case_count_arr_after[FULL_WHITE_CASES] == 0)
     {
         return "TR";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 15 && case_count_arr_after[NORMAL_CASES] > 15 && case_count_arr_after[SHARP_LEFT_CASES] > 15)
+    if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[NORMAL_CASES] > 10 &&
+        case_count_arr_after[SHARP_LEFT_CASES] > 10 && case_count_arr_after[FULL_WHITE_CASES] == 0)
     {
         return "TL";
     }
@@ -264,16 +268,14 @@ String detect_case()
     {
         return "Y";
     }
-    if ((case_count_arr_before[DANGER_LEFT_CASES] + case_count_arr_after[DANGER_LEFT_CASES]) > 10 && case_count_arr_after[NORMAL_CASES] < 15)
+    if ((case_count_arr_before[DANGER_LEFT_CASES] + case_count_arr_after[DANGER_LEFT_CASES]) > 15 &&
+        case_count_arr_after[FULL_WHITE_CASES] > 0)
     {
-        // 2 -> danger left cases
-        // 6 -> white cases
         return "P_L"; // PID-Failure in left side
     }
-    if ((case_count_arr_before[DANGER_RIGHT_CASES] + case_count_arr_after[DANGER_RIGHT_CASES]) > 10 && case_count_arr_after[NORMAL_CASES] < 15)
+    if ((case_count_arr_before[DANGER_RIGHT_CASES] + case_count_arr_after[DANGER_RIGHT_CASES]) > 15 &&
+        case_count_arr_after[FULL_WHITE_CASES] > 0)
     {
-        // 4 -> danger right cases
-        // 6 -> white cases
         return "P_R"; // PID-Failure in right side
     }
     // if (case_count_arr_after[DANGER_LEFT_CASES] > 25 && case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[FULL_WHITE_CASES] < 5)
