@@ -222,7 +222,7 @@ void Stop(double del)
     delay(del);
 }
 // //---------------------------------Breaking functions--------------------------------------
-void BreakF(int del, int vel)
+void BreakF(double del, int vel)
 {
     Backward(del, vel); // CB by Riad
 }
@@ -349,11 +349,11 @@ void doura()
         L_motorSpeed = motorSpeed;
     }
 
-    if (R_motorSpeed <= 0)
+    if (R_motorSpeed < 5)
     {
         R_motorSpeed = 0;
     }
-    if (L_motorSpeed <= 0)
+    if (L_motorSpeed < 5)
     {
         L_motorSpeed = 0;
     }
@@ -564,7 +564,7 @@ void handle_case(String case_str)
     else if (case_str == "B")
     {
         // CHANGE
-        Forward(110, 250);
+        Forward(100, 150);
         readSensors();
         generateBinary();
         if (sensorBinaryData != 0b11111111)
@@ -572,7 +572,7 @@ void handle_case(String case_str)
             Tleft();
             return;
         }
-        BreakF(50, 150);
+        BreakF(40, 150);
         Stop(4000);
     }
     else if (case_str == "L")

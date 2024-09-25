@@ -14,7 +14,7 @@ void Tleft();
 void Tright();
 void BreakR();
 void BreakL();
-void BreakF(int del,int vel);
+void BreakF(double del,int vel);
 void detection();
 void sonarDrive();
 void PIDRun();

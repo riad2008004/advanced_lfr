@@ -39,8 +39,6 @@ float sonarSearchL()
     distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
     // Displays the distance on the Serial Monitor
     // Serial.print(distance);
-    if (distance == 0)
-        distance = 50;
     return distance;
 }
 
@@ -64,8 +62,6 @@ float sonarSearchR()
     distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
     // Displays the distance on the Serial Monitor
     // Serial.print(distance);
-    if (distance == 0)
-        distance = 30;
     return distance;
 }
 
