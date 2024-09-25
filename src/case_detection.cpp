@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "case_detection.h"
 
-const int case_length = 9;
+const int case_length = 11;
 
 // defining cases
 #define NORMAL_CASES 0
@@ -13,6 +13,8 @@ const int case_length = 9;
 #define FULL_WHITE_CASES 6
 #define Y_CASES 7
 #define INVERT_CASES 8
+#define SHARP_RIGHT_CASES 9
+#define SHARP_LEFT_CASES 10
 
 /*--------- Global variables --------------*/
 uint8_t sensorReadingArray[100]; // for accessing memory as an array
@@ -103,6 +105,22 @@ uint8_t sensorRightTurnCases[]{
     0b00011101, // 3 sensor
 
 };
+uint8_t sharp_left_cases[] = {
+    0b11000000,
+    0b11100000,
+    0b11110000,
+    0b11111000,
+    0b11111100,
+    0b11111110,
+};
+uint8_t sharp_right_cases[] = {
+    0b00000011,
+    0b00000111,
+    0b00001111,
+    0b00011111,
+    0b00111111,
+    0b01111111,
+};
 
 uint8_t y_cases[] = {
     0b10000001,
@@ -172,6 +190,16 @@ void count_cases(uint8_t case_count_arr[], int start, int end)
             if (sensorReadingArray[i] == y_cases[j])
                 case_count_arr[Y_CASES]++; // Y cases
         }
+        for (unsigned int j = 0; j < sizeof(sharp_right_cases) / sizeof(sharp_right_cases[0]); j++)
+        {
+            if (sensorReadingArray[i] == sharp_right_cases[j])
+                case_count_arr[SHARP_RIGHT_CASES]++; // 90 right cases
+        }
+        for (unsigned int j = 0; j < sizeof(sharp_left_cases) / sizeof(sharp_left_cases[0]); j++)
+        {
+            if (sensorReadingArray[i] == sharp_left_cases[j])
+                case_count_arr[SHARP_LEFT_CASES]++; // 90 left cases
+        }
         if (sensorReadingArray[i] == 0b11111111) // Black cases
             case_count_arr[FULL_BLACK_CASES]++;
         if (sensorReadingArray[i] == 0b00000000) // White cases
@@ -224,11 +252,11 @@ String detect_case()
     {
         return "T";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 10 && case_count_arr_after[NORMAL_CASES] > 5 && case_count_arr_after[RIGHT_TURN_CASES] > 10)
+    if (case_count_arr_before[NORMAL_CASES] > 15 && case_count_arr_after[NORMAL_CASES] > 15 && case_count_arr_after[SHARP_RIGHT_CASES] > 15)
     {
         return "TR";
     }
-    if (case_count_arr_before[NORMAL_CASES] > 10 && case_count_arr_after[NORMAL_CASES] > 5 && case_count_arr_after[LEFT_TURN_CASES] > 10)
+    if (case_count_arr_before[NORMAL_CASES] > 15 && case_count_arr_after[NORMAL_CASES] > 15 && case_count_arr_after[SHARP_LEFT_CASES] > 15)
     {
         return "TL";
     }
