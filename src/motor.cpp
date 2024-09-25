@@ -539,17 +539,22 @@ void handle_case(String case_str)
 {
 
     // int sonarR = 0;
-
     // Stop(3000);
+
     if (case_str == "T")
     {
-        BreakF(20, 180);
         if (configureMenu[2] == 0)
             Forward(80, 150);
         else if (configureMenu[2] == 1)
+        {
+            BreakF(20, 200);
             Tright();
+        }
         else if (configureMenu[2] == 2)
+        {
+            BreakF(20, 200);
             Tleft(); // C_B_RIAD
+        }
     }
     if (case_str == "TR")
     {
@@ -557,8 +562,7 @@ void handle_case(String case_str)
             return;
         else if (configureMenu[1] == 1)
         {
-            BreakL();
-            BreakL();
+            BreakF(20, 230);
             Tright();
         }
     }
@@ -568,8 +572,7 @@ void handle_case(String case_str)
             return;
         else if (configureMenu[0] == 1)
         {
-            BreakR();
-            BreakR();
+            BreakF(20, 230);
             Tleft();
         }
     }
