@@ -255,12 +255,12 @@ String detect_case()
         return "T";
     }
     if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[NORMAL_CASES] > 8 &&
-        case_count_arr_after[SHARP_RIGHT_CASES] > 15 && case_count_arr_after[FULL_WHITE_CASES] == 0)
+        case_count_arr_after[SHARP_RIGHT_CASES] > 15 && case_count_arr_after[FULL_WHITE_CASES] < 5)
     {
         return "TR";
     }
     if (case_count_arr_before[NORMAL_CASES] > 20 && case_count_arr_after[NORMAL_CASES] > 8 &&
-        case_count_arr_after[SHARP_LEFT_CASES] > 15 && case_count_arr_after[FULL_WHITE_CASES] == 0)
+        case_count_arr_after[SHARP_LEFT_CASES] > 15 && case_count_arr_after[FULL_WHITE_CASES] < 5)
     {
         return "TL";
     }
@@ -269,12 +269,12 @@ String detect_case()
         return "Y";
     }
     if ((case_count_arr_before[DANGER_LEFT_CASES] + case_count_arr_after[DANGER_LEFT_CASES]) > 15 &&
-        case_count_arr_after[FULL_WHITE_CASES] > 0)
+        case_count_arr_after[FULL_WHITE_CASES] > 5)
     {
         return "P_L"; // PID-Failure in left side
     }
     if ((case_count_arr_before[DANGER_RIGHT_CASES] + case_count_arr_after[DANGER_RIGHT_CASES]) > 15 &&
-        case_count_arr_after[FULL_WHITE_CASES] > 0)
+        case_count_arr_after[FULL_WHITE_CASES] > 5)
     {
         return "P_R"; // PID-Failure in right side
     }
