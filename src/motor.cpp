@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "motor.h"
 #include "display.h"
+#include "ex_condition.h"
 
 //-------------- Connection related---------------------------------------
 #define R_MTR_PWM 7
@@ -57,6 +58,11 @@ extern String detect_case(); // Case detection file
 extern void displayCaseDecision(String case_str);
 
 //-------------------------------------------------------------------
+extern void Plus_counter_action();
+extern void T_counter_action();
+extern void TL_counter_action();
+extern void TR_counter_action();
+extern void LB_counter_action();
 //-------------------------------------------------------------------
 
 void motorSetup()
@@ -547,13 +553,17 @@ void handle_case(String case_str)
             Forward(80, 150);
         else if (configureMenu[2] == 1)
         {
-            BreakF(25, 250);
+            BreakF(30, 250);
             Tright();
         }
         else if (configureMenu[2] == 2)
         {
-            BreakF(25, 250);
+            BreakF(30, 250);
             Tleft(); // C_B_RIAD
+        }
+        else if (configureMenu[2] == 3)
+        {
+            T_counter_action();
         }
     }
     if (case_str == "TR")
@@ -562,8 +572,12 @@ void handle_case(String case_str)
             return;
         else if (configureMenu[1] == 1)
         {
-            BreakF(25, 250);
+            BreakF(30, 250);
             Tright();
+        }
+        else if (configureMenu[1] == 2)
+        {
+            TR_counter_action();
         }
     }
     if (case_str == "TL")
@@ -572,8 +586,12 @@ void handle_case(String case_str)
             return;
         else if (configureMenu[0] == 1)
         {
-            BreakF(25, 250);
+            BreakF(30, 250);
             Tleft();
+        }
+        else if (configureMenu[0] == 2)
+        {
+            TL_counter_action();
         }
     }
     if (case_str == "Y")
@@ -610,19 +628,31 @@ void handle_case(String case_str)
         if (configureMenu[3] == 0)
             return;
         else if (configureMenu[3] == 1)
+        {
+            BreakF(30, 250);
             Tright();
+        }
         else if (configureMenu[3] == 2)
+        {
+            BreakF(30, 250);
             Tleft();
+        }
+        else if (configureMenu[3] == 3)
+        {
+            Plus_counter_action();
+        }
     }
     else if (case_str == "L_B")
     {
         if (configureMenu[7] == 2)
         {
             UTurn();
-            // Tleft();
-            //  Tright();
-            //  Forward(1200, 250);
+            // Forward(1000,200);
             return;
+        }
+        else if (configureMenu[7] == 3)
+        {
+            LB_counter_action();
         }
 
         Vul = 0;

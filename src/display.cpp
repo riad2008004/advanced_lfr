@@ -915,6 +915,8 @@ char displayConfig(int x, int y)
             return 'N';
         else if (configureMenu[x] == 1)
             return 'L';
+        else if (configureMenu[x] == 2)
+            return 'C';
         else
             return 'U';
     }
@@ -924,6 +926,8 @@ char displayConfig(int x, int y)
             return 'N';
         else if (configureMenu[x] == 1)
             return 'R';
+        else if (configureMenu[x] == 2)
+            return 'C';
         else
             return 'U';
     }
@@ -935,6 +939,8 @@ char displayConfig(int x, int y)
             return 'R';
         else if (configureMenu[x] == 2)
             return 'L';
+        else if (configureMenu[x] == 3)
+            return 'C';
         else
             return 'U';
     }
@@ -946,6 +952,8 @@ char displayConfig(int x, int y)
             return 'R';
         else if (configureMenu[x] == 2)
             return 'L';
+        else if (configureMenu[x] == 3)
+            return 'C';
         else
             return 'U';
     }
@@ -984,6 +992,8 @@ char displayConfig(int x, int y)
             return 'Y';
         else if (configureMenu[x] == 2)
             return 'B';
+        else if (configureMenu[x] == 3)
+            return 'C';
         else
             return 'U';
     }
