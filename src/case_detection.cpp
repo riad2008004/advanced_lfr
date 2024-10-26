@@ -206,9 +206,9 @@ void count_cases(uint8_t case_count_arr[], int start, int end)
             case_count_arr[FULL_WHITE_CASES]++;
         if (configureMenu[4] == 1)
         {
-            if (sensorReadingArray[i] == 0b11100111     // ----------------
-                || sensorReadingArray[i] == 0b11110011  // ----------------
-                || sensorReadingArray[i] == 0b11001111  // ----------------
+            if (sensorReadingArray[i] == 0b11100001     // ----------------
+                || sensorReadingArray[i] == 0b10000111  // ----------------
+                || sensorReadingArray[i] == 0b11000011  // ----------------
                 || sensorReadingArray[i] == 0b11000111  // ----------------
                 || sensorReadingArray[i] == 0b11100011) // ----------------
 
