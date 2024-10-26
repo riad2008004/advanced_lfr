@@ -662,8 +662,10 @@ void handle_case(String case_str)
             for (int i = 0; i < 20; i++)
             {
                 float distance_r = sonarSearchR();
-                if (distance_r > 0 && distance_r < 25)
+                float distance_l = sonarSearchL();
+                if ((distance_r > 0 && distance_r < 25) || (distance_l > 0 && distance_l < 25))
                 {
+                    Stop(10);
                     sonarDrive();
                     break;
                 }
@@ -763,7 +765,7 @@ void detection()
 void sonarDrive()
 {
     bool sonarBreak = 0;
-    float Ks = 4.5;
+    float Ks = 5.5;
     int rSonarValue = 0;
     int lSonarValue = 0;
     float errorValue = 0;
@@ -772,19 +774,19 @@ void sonarDrive()
         rSonarValue = sonarSearchR();
         lSonarValue = sonarSearchL();
 
-        if (rSonarValue < 50 || lSonarValue < 50)
+        if (rSonarValue < 25 || lSonarValue < 25)
         {
             errorValue = lSonarValue - rSonarValue;
             displayCaseDecision(String(errorValue));
         }
         int r_pwm = 90 + (errorValue * Ks);
         int l_pwm = 90 - (errorValue * Ks);
-        if (r_pwm > 100)
-            r_pwm = 100;
+        if (r_pwm > 150)
+            r_pwm = 150;
         if (r_pwm < 0)
             r_pwm = 0;
-        if (l_pwm > 100)
-            l_pwm = 100;
+        if (l_pwm > 150)
+            l_pwm = 150;
         if (l_pwm < 0)
             l_pwm = 0;
 
