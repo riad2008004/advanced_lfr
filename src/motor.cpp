@@ -767,8 +767,6 @@ void sonarDrive()
     int rSonarValue = 0;
     int lSonarValue = 0;
     float errorValue = 0;
-    Left(10, 200);
-    Stop(5);
     while (true)
     {
         rSonarValue = sonarSearchR();
@@ -779,14 +777,14 @@ void sonarDrive()
             errorValue = lSonarValue - rSonarValue;
             displayCaseDecision(String(errorValue));
         }
-        int r_pwm = 80 + (errorValue * Ks);
-        int l_pwm = 80 - (errorValue * Ks);
-        if (r_pwm > 80)
-            r_pwm = 80;
+        int r_pwm = 90 + (errorValue * Ks);
+        int l_pwm = 90 - (errorValue * Ks);
+        if (r_pwm > 100)
+            r_pwm = 100;
         if (r_pwm < 0)
             r_pwm = 0;
-        if (l_pwm > 80)
-            l_pwm = 80;
+        if (l_pwm > 100)
+            l_pwm = 100;
         if (l_pwm < 0)
             l_pwm = 0;
 
