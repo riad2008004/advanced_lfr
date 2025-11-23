@@ -306,7 +306,7 @@ void optionHandler(String option)
         display.println(F("RUNNING"));
         display.display();
         delay(300);
-        Forward(50, 200);
+        Forward(5, 200);
         while (true)
         {
             Run();

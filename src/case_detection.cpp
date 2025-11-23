@@ -206,11 +206,12 @@ void count_cases(uint8_t case_count_arr[], int start, int end)
             case_count_arr[FULL_WHITE_CASES]++;
         if (configureMenu[4] == 1)
         {
-            if (sensorReadingArray[i] == 0b11100001     // ----------------
-                || sensorReadingArray[i] == 0b10000111  // ----------------
-                || sensorReadingArray[i] == 0b11000011  // ----------------
-                || sensorReadingArray[i] == 0b11000111  // ----------------
-                || sensorReadingArray[i] == 0b11100011) // ----------------
+            if (sensorReadingArray[i] == 0b11100001     //
+                || sensorReadingArray[i] == 0b10000111  //
+                || sensorReadingArray[i] == 0b11000011  //
+                || sensorReadingArray[i] == 0b11000111  //
+                || sensorReadingArray[i] == 0b11100011  //
+                || sensorReadingArray[i] == 0b11100111) //
 
             {
                 inverseCases++;
@@ -310,7 +311,7 @@ String detect_case()
         return "L_B"; // Line break
     }
 
-    if (case_count_arr_after[FULL_BLACK_CASES] > 35)
+    if (case_count_arr_after[FULL_BLACK_CASES] > 25)
     {
         return "B";
     }

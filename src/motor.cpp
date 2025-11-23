@@ -291,14 +291,14 @@ void Tleft()
     // Stop(5);
     while (1)
     {
-        Left(5, 250); // (del,vel)
+        Left(5, 210); // (del,vel)
         readSensors();
         generateBinary();
         if (sensorBinaryReading[0] == 1 || sensorBinaryReading[1] == 1)
         {
             while (true)
             {
-                Left(5, 90);
+                Left(5, 190);
                 readSensors();
                 generateBinary();
                 if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
@@ -322,14 +322,14 @@ void Tright()
     // Stop(5);
     while (1)
     {
-        Right(5, 250); //(del,vel)
+        Right(5, 210); //(del,vel)
         readSensors();
         generateBinary();
         if (sensorBinaryReading[6] == 1 || sensorBinaryReading[7] == 1)
         {
             while (true)
             {
-                Right(5, 90);
+                Right(5, 190);
                 readSensors();
                 generateBinary();
                 if (sensorBinaryReading[3] == 1 || sensorBinaryReading[4] == 1)
@@ -683,7 +683,7 @@ void handle_case(String case_str)
     }
     else if (case_str == "C_L")
     {
-        Tleft();
+        Tright();
     }
     else if (case_str == "C_R")
     {
@@ -691,15 +691,13 @@ void handle_case(String case_str)
     }
     else if (case_str == "B")
     {
-        // CHANGE
-        Forward(100, 150);
-        readSensors();
-        generateBinary();
-        if (sensorBinaryData != 0b11111111)
-        {
-            Tleft();
-            return;
-        }
+        // readSensors();
+        // generateBinary();
+        // if (sensorBinaryData != 0b11111111)
+        // {
+        //     Tleft();
+        //     return;
+        // }
         BreakF(40, 150);
         Stop(4000);
     }
@@ -753,7 +751,7 @@ void detection()
     for (int i = 0; i < 50; i++)
     {
         PIDRun();
-        delayMicroseconds(170);
+        delayMicroseconds(200);
     }
     case_str = detect_case();
     displayCaseDecision(case_str);
