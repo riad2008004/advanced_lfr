@@ -691,13 +691,7 @@ void handle_case(String case_str)
     }
     else if (case_str == "B")
     {
-        // readSensors();
-        // generateBinary();
-        // if (sensorBinaryData != 0b11111111)
-        // {
-        //     Tleft();
-        //     return;
-        // }
+
         BreakF(40, 150);
         Stop(4000);
     }

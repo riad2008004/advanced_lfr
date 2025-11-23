@@ -311,7 +311,7 @@ String detect_case()
         return "L_B"; // Line break
     }
 
-    if (case_count_arr_after[FULL_BLACK_CASES] > 25)
+    if (case_count_arr_after[FULL_BLACK_CASES] > 35)
     {
         return "B";
     }

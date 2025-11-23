@@ -87,14 +87,14 @@ void generateBinary()
     //--------- Check for Invert situation ----------------------------------------------
 
     // Handling Invert situations
-    // if (isInvert)
-    // {
-    //     for (i = 0; i < numOfSensors; i++)
-    //     {
-    //         sensorBinaryReading[i] ^= 1;
-    //     }
-    //     sensorBinaryData = ~sensorBinaryData;
-    // }
+    if (isInvert)
+    {
+        for (i = 0; i < numOfSensors; i++)
+        {
+            sensorBinaryReading[i] ^= 1;
+        }
+        sensorBinaryData = ~sensorBinaryData;
+    }
 
     memoryAddReading(&sensorMemory, sensorBinaryData);
 }
