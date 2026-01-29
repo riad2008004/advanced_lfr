@@ -269,26 +269,26 @@ String detect_case()
     {
         return "Y";
     }
-    if ((case_count_arr_before[DANGER_LEFT_CASES] + case_count_arr_after[DANGER_LEFT_CASES]) > 15 &&
-        case_count_arr_after[FULL_WHITE_CASES] > 5)
-    {
-        return "P_L"; // PID-Failure in left side
-    }
-    if ((case_count_arr_before[DANGER_RIGHT_CASES] + case_count_arr_after[DANGER_RIGHT_CASES]) > 15 &&
-        case_count_arr_after[FULL_WHITE_CASES] > 5)
-    {
-        return "P_R"; // PID-Failure in right side
-    }
-    if (case_count_arr_after[SHARP_LEFT_CASES] > 15 && case_count_arr_before[NORMAL_CASES] > 15 &&
-        case_count_arr_after[FULL_WHITE_CASES] < 5)
-    {
-        return "C_L"; // for sharp curb Left side
-    }
-    if (case_count_arr_after[SHARP_RIGHT_CASES] > 15 && case_count_arr_before[NORMAL_CASES] > 15 &&
-        case_count_arr_after[FULL_WHITE_CASES] < 5)
-    {
-        return "C_R"; // for sharp curb Right side
-    }
+    // if ((case_count_arr_before[DANGER_LEFT_CASES] + case_count_arr_after[DANGER_LEFT_CASES]) > 15 &&
+    //     case_count_arr_after[FULL_WHITE_CASES] > 5)
+    // {
+    //     return "P_L"; // PID-Failure in left side
+    // }
+    // if ((case_count_arr_before[DANGER_RIGHT_CASES] + case_count_arr_after[DANGER_RIGHT_CASES]) > 15 &&
+    //     case_count_arr_after[FULL_WHITE_CASES] > 5)
+    // {
+    //     return "P_R"; // PID-Failure in right side
+    // }
+    // if (case_count_arr_after[SHARP_LEFT_CASES] > 15 && case_count_arr_before[NORMAL_CASES] > 15 &&
+    //     case_count_arr_after[FULL_WHITE_CASES] < 5)
+    // {
+    //     return "C_L"; // for sharp curb Left side
+    // }
+    // if (case_count_arr_after[SHARP_RIGHT_CASES] > 15 && case_count_arr_before[NORMAL_CASES] > 15 &&
+    //     case_count_arr_after[FULL_WHITE_CASES] < 5)
+    // {
+    //     return "C_R"; // for sharp curb Right side
+    // }
 
     if ((case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]) > 10 &&
         (case_count_arr_after[LEFT_TURN_CASES] + case_count_arr_before[LEFT_TURN_CASES]) >

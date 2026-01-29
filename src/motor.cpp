@@ -349,7 +349,7 @@ void PIDleft()
 {
     while (1)
     {
-        PLeft(5, 230); // (del,vel)
+        PLeft(10, 250); // (del,vel)
         readSensors();
         generateBinary();
         if (sensorBinaryReading[0] == 1 || sensorBinaryReading[1] == 1)
@@ -373,7 +373,7 @@ void PIDright()
 {
     while (1)
     {
-        PRight(5, 230); //(del,vel)
+        PRight(10, 250); //(del,vel)
         readSensors();
         generateBinary();
         if (sensorBinaryReading[6] == 1 || sensorBinaryReading[7] == 1)
@@ -691,8 +691,7 @@ void handle_case(String case_str)
     }
     else if (case_str == "B")
     {
-
-        BreakF(40, 150);
+        BreakF(100, 200);
         Stop(4000);
     }
     else if (case_str == "L")
